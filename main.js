@@ -22,10 +22,12 @@ input.addEventListener('submit', async event => {
     console.log(event.target.search.value)
     console.log(category);
 
-    search(country, language, category, query)
+    // const response = await search(country, language, category, query)
+    const response = await getData();
 
-    console.log(data);
-    articles = data.articles;
+    console.log(response);
+    articles = response.articles;
+    console.log(articles);
 
     buildPagination(articles.length + 1);
     renderArticles(articles);
@@ -68,39 +70,38 @@ function renderArticles(articles) {
 
 function buildPagination(elements) {
     const fragment = document.createDocumentFragment();
-    numberOfPages = elements / articleNum;
+    const navButton = ['«', '»'];
+
+    numberOfPages = Math.floor(elements / articleNum);
     if (elements % articleNum !== 0) {
         numberOfPages++;
     }
 
-    for (let i = 0; i < numberOfPages; i++) {
-        const pageItem = document.createElement('li');
-        const pageLink = document.createElement('button');
-        pageItem.classList.add('page-item');
-        pageLink.classList.add('page-link');
-        pageLink.textContent = i + 1;
-
-        pageItem.appendChild(pageLink);
+    navButton.forEach(val => {
+        const pageItem = buildPageItem(val);
         fragment.appendChild(pageItem);
+    });
+
+    for (let i = 0; i < numberOfPages; i++) {
+        const pageItem = buildPageItem(i + 1);
+        fragment.insertBefore(pageItem, fragment.lastChild);
     }
 
-    pagination.insertBefore(fragment, pagination.childNodes[2]);
+    // pagination.insertBefore(fragment, pagination.childNodes[2]);
+    pagination.innerHTML = '';
+    pagination.appendChild(fragment);
     pagination.classList.remove('hide');
 }
-// <nav>
-//     <ul class="pagination">
-//         <li class="page-item">
-//             <a class="page-link disabled" href="#" aria-label="Previous">
-//                 <span aria-hidden="true">&laquo;</span>
-//             </a>
-//         </li>
-//         <li class="page-item"><a class="page-link" href="#">1</a></li>
-//         <li class="page-item"><a class="page-link" href="#">2</a></li>
-//         <li class="page-item"><a class="page-link" href="#">3</a></li>
-//         <li class="page-item">
-//             <a class="page-link" href="#" aria-label="Next">
-//                 <span aria-hidden="true">&raquo;</span>
-//             </a>
-//         </li>
-//     </ul>
-// </nav>
+
+function buildPageItem(text) {
+    const pageItem = document.createElement('li');
+    const pageButton = document.createElement('button');
+    pageItem.classList.add('page-item');
+    pageButton.classList.add('page-link');
+    pageButton.innerText = text;
+    if (text === '«') pageButton.id = 'page-start';
+    if (text === '»') pageButton.id = 'page-end';    
+    pageItem.appendChild(pageButton);
+
+    return pageItem;
+}

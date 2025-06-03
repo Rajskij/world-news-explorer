@@ -43,19 +43,24 @@ export function setPaginationState(start, end, articleLength) {
     const next = document.getElementById('page-end');
     const prev = document.getElementById('page-start');
 
+    if (start === 0 && end === articleLength) {
+        next.classList.add('disabled')
+        prev.classList.add('disabled');
+        return;
+    }
+    if (start > 0 && end < articleLength) {
+        next.classList.remove('disabled');
+        prev.classList.remove('disabled');
+        return;
+    }
     if (start === 0) {
         prev.classList.add('disabled');
         next.classList.remove('disabled');
     }
     if (end === articleLength) {
-
         next.classList.add('disabled')
         prev.classList.remove('disabled');
-    }
-    if (start > 0 && end < articleLength) {
-        next.classList.remove('disabled');
-        prev.classList.remove('disabled');
-    }
+    }    
 }
 
 export function buildSections() {
