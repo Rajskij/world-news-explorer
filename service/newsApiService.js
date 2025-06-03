@@ -1,4 +1,4 @@
-import { getData } from './testData.js';
+import { getData } from '../util/testData.js';
 
 const API_KEY = 'bcf1d1f41557400682fdd7699efbeeb6';
 const BASE_URL = 'https://gnews.io/api/v4/';
