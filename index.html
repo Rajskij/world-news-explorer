@@ -55,11 +55,18 @@
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+              "luxon": "https://cdn.jsdelivr.net/npm/luxon@3.4.0/build/es6/luxon.js"
+            }
+        }
+    </script>
     <script src="main.js" type="module"></script>
-    <script src="testData.js" type="module"></script>
-    <script src="util.js" type="module"></script>
-    <script src="localeConstants.js" type="module"></script>
-    <script src="newsApiService.js" type="module"></script>
+    <script src="util/testData.js" type="module"></script>
+    <script src="util/util.js" type="module"></script>
+    <script src="util/localeConstants.js" type="module"></script>
+    <script src="service/newsApiService.js" type="module"></script>
 </body>
 
 </html>

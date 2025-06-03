@@ -1,5 +1,5 @@
 import { getData } from './util/testData.js';
-import { buildArticle, setPaginationState, buildSections } from './util/util.js';
+import { buildArticle, setPaginationState, buildDropdownMenus } from './util/util.js';
 import { search } from './service/newsApiService.js'
 
 const input = document.getElementById('input-form');

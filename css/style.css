@@ -19,3 +19,36 @@ body {
 h1 {
     margin-top: 50px;
 }
+
+#links {
+    text-decoration: none;
+    color: rgb(47, 47, 47);
+}
+
+p {
+    font-size: small;
+}
+
+.page-item .page-link {
+  color: #3f3f3f !important;
+}
+
+/* style for articles */
+.article-link {
+    display: block;
+    text-decoration: none;
+    color: rgb(52, 52, 52);
+}
+
+.article-image {
+    width: 60vw;
+    border-radius: 10px;
+    display: block;
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1%;
+    font-size: small;
+}
