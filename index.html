@@ -35,53 +35,16 @@
             <label for="search" class="form-label">Search by phrase</label>
             <input type="text" placeholder="search phrase" id="search" class="form-control">
         </div>
-        <button class="btn btn-secondary">Submit</button>
+        <button class="btn btn-secondary" type="submit">Submit</button>
     </form>
-    <section id="news">
-        <hr>
-        <div>
-            <h3><a href="https://www.bbc.com/news/articles/c5y8jmkr3j7o" target="_blank">Police launch new search in
-                    Portugese town</a></h3>
-            <p>published date: 1hr ago</p>
-            <p>BBC</p>
-            <img src="https://ichef.bbci.co.uk/news/1024/branded_news/cc84/live/4af1f640-3fbf-11f0-835b-310c7b938e84.png"
-                style="height: 20vh;" alt="">
-            <p><strong>German police will launch a new search this week in the holiday town where she went missing in
-                    2007.</strong></p>
-            <p><a href="https://www.bbc.com/news/articles/c5y8jmkr3j7o" target="_blank">New search in Portugal in
-                    Madeleine McCann case\nMadeleine McCann went missing during a family holiday in
-                    Portugal in 2007\nGerman police will undertake a new search in Portugal this week as part of ongoing
-                    investigations into the disappearance of Made...</a></p>
-        </div>
-        <hr>
-        <div>
-            <h3><a href="https://www.bbc.com/news/articles/c5y8jmkr3j7o" target="_blank">Police launch new search in
-                    Portugese town</a></h3>
-            <p>published date: 1hr ago</p>
-            <p>BBC</p>
-            <img src="https://ichef.bbci.co.uk/news/1024/branded_news/cc84/live/4af1f640-3fbf-11f0-835b-310c7b938e84.png"
-                style="height: 20vh;" alt="">
-            <p><strong>German police will launch a new search this week in the holiday town where she went missing in
-                    2007.</strong></p>
-            <p>New search in Portugal in Madeleine McCann case\nMadeleine McCann went missing during a family holiday in
-                Portugal in 2007\nGerman police will undertake a new search in Portugal this week as part of ongoing
-                investigations into the disappearance of Made...</p>
-        </div>
-    </section>
+    <section id="news"></section>
     <nav>
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link disabled" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
+        <ul id="pagination" class="pagination">
+            <li class="page-item cursor-pointer">
+                <button id="page-start" class="page-link disabled">&laquo;</button>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
             <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
+                <button id="page-end" class="page-link">&raquo;</button>
             </li>
         </ul>
     </nav>
@@ -90,6 +53,7 @@
         crossorigin="anonymous"></script>
     <script src="script.js" type="module"></script>
     <script src="testData.js" type="module"></script>
+    <script src="util.js" type="module"></script>
 </body>
 
 </html>
