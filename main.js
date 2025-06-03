@@ -1,5 +1,5 @@
 import { getData } from './util/testData.js';
-import { buildArticle, setPaginationState, buildDropdownMenus } from './util/util.js';
+import { buildArticle, setPaginationState, buildPageItem } from './util/util.js';
 import { search } from './service/newsApiService.js'
 
 const input = document.getElementById('input-form');
@@ -12,24 +12,18 @@ let currentPage = 0;
 
 input.addEventListener('submit', async event => {
     event.preventDefault();
-    const data = await getData();
     const country = event.target.countries.value;
     const language = event.target.languages.value;
     const category = event.target.category.value;
     const query = event.target.search.value;
-    console.log(event.target.countries.value)
-    console.log(event.target.languages.value)
-    console.log(event.target.search.value)
-    console.log(category);
 
-    // const response = await search(country, language, category, query)
+    // For testing purpose only
     const response = await getData();
+    // const response = await search(country, language, category, query);
 
     console.log(response);
     articles = response.articles;
-    console.log(articles);
-
-    buildPagination(articles.length + 1);
+    setTimeout(() => buildPagination(articles.length + 1), 1000) ;
     renderArticles(articles);
 });
 
@@ -40,20 +34,6 @@ pagination.addEventListener('click', event => {
     changePage(event.target.textContent);
     renderArticles(articles);
 });
-
-function changePage(nav) {
-    if (nav === '»') {
-        currentPage++;
-    }
-    if (nav === '«') {
-        currentPage--;
-    }
-
-    const page = Number(nav);
-    if (page) {
-        currentPage = page - 1;
-    }
-}
 
 function renderArticles(articles) {
     let start = currentPage * articleNum;
@@ -87,21 +67,21 @@ function buildPagination(elements) {
         fragment.insertBefore(pageItem, fragment.lastChild);
     }
 
-    // pagination.insertBefore(fragment, pagination.childNodes[2]);
     pagination.innerHTML = '';
     pagination.appendChild(fragment);
     pagination.classList.remove('hide');
 }
 
-function buildPageItem(text) {
-    const pageItem = document.createElement('li');
-    const pageButton = document.createElement('button');
-    pageItem.classList.add('page-item');
-    pageButton.classList.add('page-link');
-    pageButton.innerText = text;
-    if (text === '«') pageButton.id = 'page-start';
-    if (text === '»') pageButton.id = 'page-end';    
-    pageItem.appendChild(pageButton);
+function changePage(nav) {
+    if (nav === '»') {
+        currentPage++;
+    }
+    if (nav === '«') {
+        currentPage--;
+    }
 
-    return pageItem;
+    const page = Number(nav);
+    if (page) {
+        currentPage = page - 1;
+    }
 }

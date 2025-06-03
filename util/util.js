@@ -92,3 +92,16 @@ export function buildDropdownMenus() {
     countriesSect.appendChild(countryFrag);
     categorySect.appendChild(categoryFrag);
 }
+
+export function buildPageItem(text) {
+    const pageItem = document.createElement('li');
+    const pageButton = document.createElement('button');
+    pageItem.classList.add('page-item');
+    pageButton.classList.add('page-link');
+    pageButton.innerText = text;
+    if (text === '«') pageButton.id = 'page-start';
+    if (text === '»') pageButton.id = 'page-end';    
+    pageItem.appendChild(pageButton);
+
+    return pageItem;
+}

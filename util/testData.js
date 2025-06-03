@@ -63,7 +63,6 @@ const jsonString = `{
         }
     ]
 }`;
-
 const cleanJsonString = jsonString.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
 const response = JSON.parse(cleanJsonString);
 
