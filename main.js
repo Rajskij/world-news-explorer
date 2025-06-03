@@ -1,5 +1,6 @@
 import { getData } from './testData.js';
-import { buildArticle, setPaginationState } from './util.js';
+import { buildArticle, setPaginationState, buildSections } from './util.js';
+import { search } from './newsApiService.js'
 
 const input = document.getElementById('input-form');
 const news = document.getElementById('news');
@@ -12,6 +13,17 @@ let currentPage = 0;
 input.addEventListener('submit', async event => {
     event.preventDefault();
     const data = await getData();
+    const country = event.target.countries.value;
+    const language = event.target.languages.value;
+    const category = event.target.category.value;
+    const query = event.target.search.value;
+    console.log(event.target.countries.value)
+    console.log(event.target.languages.value)
+    console.log(event.target.search.value)
+    console.log(category);
+
+    search(country, language, category, query)
+
     console.log(data);
     articles = data.articles;
 
@@ -20,9 +32,14 @@ input.addEventListener('submit', async event => {
 });
 
 pagination.addEventListener('click', event => {
-    const nav = event.target.textContent;
-    console.log(event.target);
+    if (!event.target.matches('button')) {
+        return;
+    }
+    changePage(event.target.textContent);
+    renderArticles(articles);
+});
 
+function changePage(nav) {
     if (nav === '»') {
         currentPage++;
     }
@@ -30,13 +47,11 @@ pagination.addEventListener('click', event => {
         currentPage--;
     }
 
-    const page = Number(event.target.textContent);
+    const page = Number(nav);
     if (page) {
         currentPage = page - 1;
     }
-
-    renderArticles(articles);
-});
+}
 
 function renderArticles(articles) {
     let start = currentPage * articleNum;

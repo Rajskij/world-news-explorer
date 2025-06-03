@@ -1,3 +1,13 @@
+import { languages, countries, categories } from './localeConstants.js'
+
+const countriesSect = document.getElementById('countries');
+const languageSect = document.getElementById('languages');
+const categorySect = document.getElementById('category');
+
+(() => {
+    buildSections();
+})()
+
 export function buildArticle(data) {
     const fragment = document.createDocumentFragment();
     const hr = document.createElement('hr');
@@ -46,4 +56,35 @@ export function setPaginationState(start, end, articleLength) {
         next.classList.remove('disabled');
         prev.classList.remove('disabled');
     }
+}
+
+export function buildSections() {
+    const langFrag = document.createDocumentFragment();
+    const countryFrag = document.createDocumentFragment();
+    const categoryFrag = document.createDocumentFragment();
+
+    Object.entries(languages).forEach(language => {
+        const option = document.createElement('option');
+        option.textContent = language[0];
+        option.value = language[1];
+        langFrag.appendChild(option);
+    });
+
+    Object.entries(countries).forEach(country => {
+        const option = document.createElement('option');
+        option.textContent = country[0];
+        option.value = country[1];
+        countryFrag.appendChild(option);
+    })
+
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        option.value = category;
+        categoryFrag.appendChild(option);
+    })
+
+    languageSect.appendChild(langFrag);
+    countriesSect.appendChild(countryFrag);
+    categorySect.appendChild(categoryFrag);
 }
