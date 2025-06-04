@@ -28,4 +28,4 @@ This project uses the GNews API (v4) with the following endpoints:
 4. Use pagination controls to navigate results
 
 ## Note
-The current implementation includes a test mode using mock data (`getData()`). To use the real API
+The current implementation includes a test mode using mock data (`getData()`).
