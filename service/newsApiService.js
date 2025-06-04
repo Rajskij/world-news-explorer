@@ -1,7 +1,18 @@
 const API_KEY = 'bcf1d1f41557400682fdd7699efbeeb6';
 const BASE_URL = 'https://gnews.io/api/v4/';
+const body = document.querySelector('body');
 
 axios.defaults.baseURL = BASE_URL;
+
+axios.interceptors.request.use(config => {
+    body.style.cursor = 'wait';
+    return config;
+})
+
+axios.interceptors.response.use(config => {
+    body.style.cursor = '';
+    return config;
+})
 
 export async function search(country, language, category, query) {
     if (!query) {
@@ -16,7 +27,6 @@ export async function search(country, language, category, query) {
 async function getHeadlines(country, language, category) {
     const queryParam = buildQueryParam(country, language, category, null);
     const response = await axios.get(`top-headlines?${queryParam}apikey=${API_KEY}`);
-
     return response.data;
 }
 

@@ -18,8 +18,8 @@ input.addEventListener('submit', async event => {
     const query = event.target.search.value;
 
     // For testing purpose only
-    const response = await getData();
-    // const response = await search(country, language, category, query);
+    // const response = await getData();
+    const response = await search(country, language, category, query);
 
     console.log(response);
     articles = response.articles;
